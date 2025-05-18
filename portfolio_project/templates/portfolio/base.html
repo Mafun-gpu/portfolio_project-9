@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мое портфолио</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/bootstrap.min.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% include 'portfolio/partial_nav.html' %}
+    
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                {% load portfolio_tags %}
+                {% show_categories %}
+                {% show_tags %}
+                <div class="portfolio-count">
+                    Всего проектов: {% portfolio_count %}
+                </div>
+            </div>
+            <div class="col-md-9">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'portfolio/jquery-3.5.1.min.js' %}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
